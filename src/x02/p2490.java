@@ -9,6 +9,7 @@ public class p2490 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
+        String result = "DCBAE";    // 함수 대신 문자열의 인덱스를 이용하도록 개선
         int i = 3;
         while (i-- > 0) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -18,22 +19,8 @@ public class p2490 {
                     front++;
                 }
             }
-            sb.append(getResult(front)).append("\n");
+            sb.append(result.charAt(front)).append('\n');
         }
         System.out.println(sb);
-    }
-
-    public static String getResult(int front) {
-        if (front == 0) {
-            return "D";
-        } else if (front == 1) {
-            return "C";
-        } else if (front == 2) {
-            return "B";
-        } else if (front == 3) {
-            return "A";
-        } else {
-            return "E";
-        }
     }
 }
