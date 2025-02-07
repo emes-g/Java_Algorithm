@@ -1,6 +1,7 @@
 package x03;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MyArrayList<E> implements MyList<E> {
     private static final int DEFAULT_CAPACITY = 5;  // 기본 크기는 10인데, 테스트를 위해 5로 설정
@@ -107,17 +108,22 @@ public class MyArrayList<E> implements MyList<E> {
 
     @Override
     public int indexOf(Object o) {
-        if (o == null) {    // null은 동등 연산자로 비교해야 함
-            for (int i = 0; i < size; i++) {
-                if (elementData[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (o.equals(elementData[i])) {
-                    return i;
-                }
+//        if (o == null) {    // null은 동등 연산자로 비교해야 함
+//            for (int i = 0; i < size; i++) {
+//                if (elementData[i] == null) {
+//                    return i;
+//                }
+//            }
+//        } else {
+//            for (int i = 0; i < size; i++) {
+//                if (o.equals(elementData[i])) {
+//                    return i;
+//                }
+//            }
+//        }
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(elementData[i], o)) {    // Objects.equals()는 내부적으로 null을 처리해줌 (null에 안전함)
+                return i;
             }
         }
         return -1;
