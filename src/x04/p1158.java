@@ -3,9 +3,6 @@ package x04;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.StringTokenizer;
 
 public class p1158 {
@@ -14,27 +11,26 @@ public class p1158 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
-        int[] order = new int[n];
-        int index = 0;
 
-        List<Integer> list = new LinkedList<>();
+        int[] prev = new int[5001];
+        int[] next = new int[5001];
+        int[] order = new int[n];
+        int len = 0;
         for (int i = 1; i <= n; i++) {
-            list.add(i);
+            prev[i] = (i == 1) ? n : i - 1;
+            next[i] = (i == n) ? 1 : i + 1;
+            len++;
         }
-        ListIterator<Integer> cursor = list.listIterator();
-        int step = 0;
-        while (!list.isEmpty()) {
-            while (cursor.hasNext()) {
-                if (step == k - 1) {
-                    order[index++] = cursor.next();
-                    cursor.remove();
-                    step = 0;
-                    continue;
-                }
-                cursor.next();
-                step++;
+
+        int index = 0;
+        for (int i = 1, cnt = 0; len != 0; i = next[i]) {
+            if (++cnt == k) {
+                prev[next[i]] = prev[i];
+                next[prev[i]] = next[i];
+                order[index++] = i;
+                len--;
+                cnt = 0;
             }
-            cursor = list.listIterator();
         }
 
         StringBuilder sb = new StringBuilder("<");
