@@ -14,24 +14,15 @@ public class p1874 {
         int unused = 1;
         while (n-- > 0) {
             int x = Integer.parseInt(br.readLine());
-            if (unused <= x) {
-                while (unused <= x) {
-                    stack.push(unused++);
-                    sb.append("+").append("\n");
-                }
-                stack.pop();
-                sb.append("-").append("\n");
-            } else {
-                while (stack.peek() > x) {
-                    stack.pop();
-                    sb.append("-").append("\n");
-                }
-                if (stack.pop() < x) {
-                    System.out.println("NO");
-                    return;
-                }
-                sb.append("-").append("\n");
+            while (unused <= x) {
+                stack.push(unused++);
+                sb.append("+\n");
             }
+            if (stack.pop() != x) {
+                System.out.println("NO");
+                return;
+            }
+            sb.append("-\n");
         }
         System.out.println(sb);
     }
@@ -59,12 +50,5 @@ class Stack1874 {
             return -1;
         }
         return arr[top--];
-    }
-
-    public int peek() {
-        if (isEmpty()) {
-            return -1;
-        }
-        return arr[top];
     }
 }
