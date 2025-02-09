@@ -10,7 +10,7 @@ public class p10828 {
         int n = Integer.parseInt(br.readLine());
 
         StringBuilder sb = new StringBuilder();
-        IntegerStack stack = new IntegerStack();
+        Stack10828 stack = new Stack10828();
         while (n-- > 0) {
             String cmd = br.readLine();
             if (cmd.equals("pop")) {
@@ -30,11 +30,11 @@ public class p10828 {
     }
 }
 
-class IntegerStack {
+class Stack10828 {
     int[] arr;
     int top;
 
-    public IntegerStack() {
+    public Stack10828() {
         arr = new int[10001];
         top = -1;
     }
