@@ -11,9 +11,10 @@ public class p5430 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
         while (t-- > 0) {
             String cmd = br.readLine();
-            int n = Integer.parseInt(br.readLine());
+            br.readLine();
             String str = br.readLine();
             StringTokenizer st = new StringTokenizer(str.substring(1, str.length() - 1), ",");
 
@@ -41,15 +42,15 @@ public class p5430 {
             }
 
             if (error) {
-                System.out.println("error");
+                sb.append("error").append("\n");
                 continue;
             }
             if (list.isEmpty()) {
-                System.out.println("[]");
+                sb.append("[]").append("\n");
                 continue;
             }
             ListIterator<Integer> cursor;
-            StringBuilder sb = new StringBuilder("[");
+            sb.append("[");
             if (reverse) {
                 cursor = list.listIterator(list.size());
                 sb.append(cursor.previous());
@@ -63,7 +64,8 @@ public class p5430 {
                     sb.append(',').append(cursor.next());
                 }
             }
-            System.out.println(sb.append("]"));
+            sb.append("]").append("\n");
         }
+        System.out.println(sb);
     }
 }
