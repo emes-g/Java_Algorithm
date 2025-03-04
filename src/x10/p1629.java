@@ -20,10 +20,11 @@ public class p1629 {
             return a % c;
         }
         long val = run(a, b / 2, c);
+        val = val * val % c;
         if (b % 2 == 0) {
-            return val * val % c;
+            return val;
         } else {
-            return run(a, b - 1, c) * a % c;
+            return val * a % c;
         }
     }
 }
