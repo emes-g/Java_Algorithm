@@ -1,4 +1,4 @@
-package x10;
+package x0b;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package x10;
+package x0b;
 
 public class Main {
     public static void main(String[] args) {
