@@ -9,26 +9,18 @@ public class p2493 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        Stack2493 stack = new Stack2493(n);
         StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
 
-        int num = 1;
-        while (st.hasMoreTokens()) {
-            int now = Integer.parseInt(st.nextToken());
-            while (!stack.isEmpty()) {
-                Top x = stack.peek();
-                if (now < x.height) {
-                    stack.push(new Top(now, num++));
-                    sb.append(x.num).append(' ');
-                    break;
-                }
+        Stack2493 stack = new Stack2493(n);
+        stack.push(new Top(Integer.MAX_VALUE, 0));
+        for (int num = 1; st.hasMoreTokens(); num++) {
+            int height = Integer.parseInt(st.nextToken());
+            while (stack.peek().height < height) {
                 stack.pop();
             }
-            if (stack.isEmpty()) {
-                stack.push(new Top(now, num++));
-                sb.append(0).append(' ');
-            }
+            sb.append(stack.peek().num).append(' ');
+            stack.push(new Top(height, num));
         }
         System.out.println(sb);
     }
