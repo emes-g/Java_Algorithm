@@ -30,6 +30,7 @@ public class Main {
     static int n;
     static int[][] arr;
     static ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+    static ArrayList<ArrayList<Integer>> directed = new ArrayList<>();
     static boolean[] visited;
 
     public static void main(String[] args) throws IOException {
@@ -38,6 +39,7 @@ public class Main {
         arr = new int[n + 1][n + 1];
         for (int i = 0; i <= n; i++) {
             list.add(new ArrayList<>());
+            directed.add(new ArrayList<>());
         }
         visited = new boolean[n + 1];
         int k = Integer.parseInt(br.readLine());
@@ -48,6 +50,7 @@ public class Main {
             arr[from][to] = arr[to][from] = 1;
             list.get(from).add(to);
             list.get(to).add(from);
+            directed.get(from).add(to);
         }
         // BFS
         arrayBFS(1);
@@ -61,6 +64,24 @@ public class Main {
 
         // 비재귀 DFS
         nonRecursiveDFS(1);
+
+        // 무향 그래프 사이클 탐지
+        CycleDetector cd = new CycleDetector_Undirected(list);
+        if (cd.hasCycle()) {
+            System.out.println("사이클 탐지!");
+            cd.showCyclePath();
+        } else {
+            System.out.println("사이클 없음");
+        }
+
+        // 유향 그래프 사이클 탐지
+        cd = new CycleDetector_Directed(directed);
+        if (cd.hasCycle()) {
+            System.out.println("사이클 탐지!");
+            cd.showCyclePath();
+        } else {
+            System.out.println("사이클 없음");
+        }
     }
 
     // 인접 행렬 BFS
