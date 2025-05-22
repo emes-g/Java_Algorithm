@@ -26,7 +26,7 @@ import java.util.StringTokenizer;
 6 8
  */
 
-public class TreeMain {
+public class Main_Tree {
     static int n;
     static ArrayList<ArrayList<Integer>> list = new ArrayList<>();
     static int[] parent, depth;

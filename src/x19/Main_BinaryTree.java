@@ -3,7 +3,7 @@ package x19;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinaryTreeMain {
+public class Main_BinaryTree {
     static int[] lc = {0, 2, 4, 6, 0, 0, 0, 0, 0};  // left child
     static int[] rc = {0, 3, 5, 7, 0, 8, 0, 0, 0};  // right child
 
