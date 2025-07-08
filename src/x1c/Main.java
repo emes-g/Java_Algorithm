@@ -34,7 +34,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-    static final int MAX = 1000000;
+    static final int MAX = Integer.MAX_VALUE / 2;
     static int n, m;
     static int[][] dist, next;
 
@@ -73,6 +73,7 @@ public class Main {
         }
         show(dist);
         show(next);
+//        showPath(3, 3);
         showPath(3, 5);
     }
 
@@ -87,6 +88,10 @@ public class Main {
     }
 
     public static void showPath(int start, int end) {
+        if (dist[start][end] == 0 || dist[start][end] == MAX) {
+            System.out.println("출발지와 목적지가 동일하거나 경로가 없습니다.");
+            return;
+        }
         int curr = start;
         while (curr != end) {
             System.out.printf("%d ", curr);
