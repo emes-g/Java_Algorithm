@@ -56,6 +56,10 @@ public class Main {
         showPath(start, end);
     }
 
+    // [기본적인 알고리즘]
+    // 현재 정점(curr.to)까지 curr이라는 간선을 타고 왔고,
+    // 다음 정점(next.to)까지는 next라는 간선을 타고 갈 것이다.
+    // 기존에 next.to 정점으로 이동하는 방법보다, 현재 정점(curr.to)에서 next라는 간선을 타는 것이 효율적인 경우 갱신
     public static void dijkstra(int start) {
         dist = new int[n + 1];
         Arrays.fill(dist, MAX);
@@ -65,7 +69,9 @@ public class Main {
         pq.offer(new edgeMain(start, dist[start]));
         while (!pq.isEmpty()) {
             edgeMain curr = pq.poll();
-            if (dist[curr.to] != curr.weight) {  // 현재 간선(curr)이 쓸모 없어진 경우
+            // 유효한 간선이 아니라면
+            // (현재 dist 값으로 갱신하기 위해 사용했던 간선이 아니라면)
+            if (dist[curr.to] != curr.weight) {
                 continue;
             }
             for (edgeMain next : list.get(curr.to)) {
